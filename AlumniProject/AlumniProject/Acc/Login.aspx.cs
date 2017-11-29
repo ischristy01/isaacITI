@@ -20,15 +20,19 @@ namespace AlumniProject.Acc
             Student student = new Student();
             student = student.Login(txtEmail.Text, txtPassword.Text);
 
-            if(student.Version == 0)
+            if (student != null)
             {
-                Session.Add("student", student);
-                Response.Redirect("ChangePassword.aspx");
-            }
-            else if(student!=null)
-            {
-                Session.Add("student", student);
-                Response.Redirect("~/Default.aspx");
+                if(student.Version == 0)
+                {
+                    Session.Add("student", student);
+                    Response.Redirect("ChangePassword.aspx");
+                }
+
+                else
+                {
+                    Session.Add("student", student);
+                    Response.Redirect("Default.aspx");
+                }
             }
             else
             {
